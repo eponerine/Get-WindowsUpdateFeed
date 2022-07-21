@@ -89,4 +89,4 @@ ForEach ($e in $feedXml.feed.entry) {
     }
 }
 
-return ($feedEntries | Sort Published -Descending)
+return ($feedEntries | Sort-Object -Property Published -Descending)
