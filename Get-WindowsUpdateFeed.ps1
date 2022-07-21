@@ -80,7 +80,11 @@ ForEach ($e in $feedXml.feed.entry) {
         $tempObject = [PSCustomObject] @{
             'Published' = [datetime]$e.published
             'Updated'   = [datetime]$e.updated
+            'osVersion' = $osVersion
+            'osBuild'   = [regex]::Matches($e.title.'#text',"\d{5}\.\d{2,4}").Value
+            'Id'        = [regex]::Matches($e.title.'#text',"\w{2}\d{7}").Value
             'Title'     = $e.title.'#text'
+            'Preview'   = [bool]([regex]::Matches($e.title.'#text',"Preview").Success)
             'Link'      = $e.link.href
         }
 
